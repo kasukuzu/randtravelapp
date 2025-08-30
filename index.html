@@ -179,6 +179,22 @@
                 max-height: 250px;
             }
         }
+
+        .affiliate-button {
+            display: block;
+            max-width: 350px;
+            margin: 10px auto;
+            padding: 12px 20px;
+            background-color: #ff6f61;
+            color: white;
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: bold;
+            transition: background-color 0.3s;
+        }
+        .affiliate-button:hover {
+            background-color: #e65a50;
+        }
     </style>
 </head>
 <body>
@@ -416,6 +432,8 @@
                 <h2>対象を選択</h2>
                 </div>
         </div>
+        <div id="affiliate-links-container"></div>
+
         <div>
             <button id="start-button" class="button">スタート！</button>
             <a id="details-button" class="button" href="#" target="_blank" rel="noopener noreferrer">
@@ -621,6 +639,10 @@
                 currentIndex = (currentIndex + 1) % shuffledPrefectures.length;
             }, interval);
     
+            // startRoulette 関数の setTimeout の中身を、以下のように書き換えてください。
+    
+            // startRoulette 関数の setTimeout の中身を、以下のように書き換えてください。
+    
             setTimeout(() => {
                 clearInterval(timer);
                 
@@ -640,6 +662,24 @@
                 detailsButton.href = `https://www.google.com/search?q=${searchWord}`;
                 detailsButton.style.visibility = 'visible';
                 
+                // --- アフィリエイトリンク生成処理 ---
+                const affiliateContainer = document.getElementById('affiliate-links-container');
+                affiliateContainer.innerHTML = ''; // 前回のリンクをクリア
+
+                const prefName = resultPref.name;
+
+                const affiliateURL = 'https://px.a8.net/svt/ejp?a8mat=45C668+24SXTE+4ZCO+60OXE';
+
+                const hotelLink = document.createElement('a');
+                hotelLink.href = affiliateURL;
+                hotelLink.textContent = `🏨 ${prefName}のホテル・旅館をYahoo!トラベルで探す`;
+                hotelLink.target = '_blank';
+                hotelLink.rel = 'noopener noreferrer nofollow';
+                hotelLink.className = 'affiliate-button';
+
+                affiliateContainer.appendChild(hotelLink);
+                // --- アフィリエイトリンク生成処理ここまで ---
+
                 startButton.disabled = false;
     
             }, duration);
