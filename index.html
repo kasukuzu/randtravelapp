@@ -656,30 +656,47 @@
                     resultElement.classList.add('selected');
                 }
                 
+                // --- ▼▼▼ ここから結果表示の処理（元に戻す） ▼▼▼ ---
+
+                // 1. テキストで結果を表示する
+                resultDisplay.style.display = 'block'; // 再表示する
                 resultDisplay.textContent = `🎉 ${resultPref.name}🎉`;
-                
+
+                // 2. 観光情報ボタンを更新
                 const searchWord = encodeURIComponent(`${resultPref.name} 観光`);
                 detailsButton.href = `https://www.google.com/search?q=${searchWord}`;
                 detailsButton.style.visibility = 'visible';
-                
-                // --- アフィリエイトリンク生成処理 ---
+
+                // 3. アフィリエイトリンクを生成
                 const affiliateContainer = document.getElementById('affiliate-links-container');
                 affiliateContainer.innerHTML = ''; // 前回のリンクをクリア
 
                 const prefName = resultPref.name;
 
-                const affiliateURL = 'https://px.a8.net/svt/ejp?a8mat=45C668+24SXTE+4ZCO+60OXE';
+                // Yahoo!トラベルのリンク
+                const yahooURL = 'https://px.a8.net/svt/ejp?a8mat=45C668+24SXTE+4ZCO+60OXE';
+                const yahooLink = document.createElement('a');
+                yahooLink.href = yahooURL;
+                yahooLink.textContent = `🏨 ${prefName}の宿をYahoo!トラベルで探す`;
+                yahooLink.target = '_blank';
+                yahooLink.rel = 'noopener noreferrer nofollow';
+                yahooLink.className = 'affiliate-button';
 
-                const hotelLink = document.createElement('a');
-                hotelLink.href = affiliateURL;
-                hotelLink.textContent = `🏨 ${prefName}のホテル・旅館をYahoo!トラベルで探す`;
-                hotelLink.target = '_blank';
-                hotelLink.rel = 'noopener noreferrer nofollow';
-                hotelLink.className = 'affiliate-button';
+                // じゃらんのリンク
+                const jalanURL = 'https://px.a8.net/svt/ejp?a8mat=45C668+4OHOZ6+14CS+68EPE';
+                const jalanLink = document.createElement('a');
+                jalanLink.href = jalanURL;
+                jalanLink.textContent = `🏨 ${prefName}の宿をじゃらんで探す`;
+                jalanLink.target = '_blank';
+                jalanLink.rel = 'noopener noreferrer nofollow';
+                jalanLink.className = 'affiliate-button';
 
-                affiliateContainer.appendChild(hotelLink);
-                // --- アフィリエイトリンク生成処理ここまで ---
+                // 生成したリンクをコンテナに追加
+                affiliateContainer.appendChild(yahooLink);
+                affiliateContainer.appendChild(jalanLink);
 
+                // --- ▲▲▲ 結果表示の処理ここまで ▲▲▲ ---
+                
                 startButton.disabled = false;
     
             }, duration);
