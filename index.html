@@ -152,12 +152,13 @@
             line-height: 1.7;
         }
 
-        .hero-actions {
+        .map-actions {
             display: flex;
             flex-wrap: wrap;
+            justify-content: center;
             align-items: center;
-            gap: 14px;
-            margin-top: 20px;
+            gap: 12px;
+            margin-top: 16px;
         }
 
         .button,
@@ -635,7 +636,6 @@
                 font-size: 16px;
             }
 
-            .hero-actions,
             .result-actions {
                 align-items: stretch;
             }
@@ -643,6 +643,10 @@
             .button,
             .mode-toggle {
                 width: 100%;
+            }
+
+            .map-actions {
+                align-items: stretch;
             }
 
             .result-prefecture {
@@ -689,13 +693,6 @@
             <p id="hero-kicker" class="eyebrow">次の旅先、運で決めてみる？</p>
             <h1 id="main-heading">日本ルーレット</h1>
             <p id="lead-text">ルーレットで、次の旅行先を決めましょう！</p>
-            <div class="hero-actions">
-                <button id="start-button" class="button" type="button">スタート！</button>
-                <label class="mode-toggle" for="unvisited-only-toggle">
-                    <input id="unvisited-only-toggle" type="checkbox">
-                    <span id="unvisited-only-label">未訪問のみで抽選</span>
-                </label>
-            </div>
         </header>
 
         <section id="result-card" class="result-card is-idle" aria-live="polite">
@@ -941,6 +938,13 @@
                   </g>          
                   </g>
             </svg>
+                <div class="map-actions">
+                    <button id="start-button" class="button" type="button">スタート！</button>
+                    <label class="mode-toggle" for="unvisited-only-toggle">
+                        <input id="unvisited-only-toggle" type="checkbox">
+                        <span id="unvisited-only-label">未訪問のみで抽選</span>
+                    </label>
+                </div>
             </div>
 
             <div id="filters">
