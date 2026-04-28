@@ -138,6 +138,10 @@
             font-weight: 800;
         }
 
+        .eyebrow[hidden] {
+            display: none;
+        }
+
         h1 {
             margin-bottom: 10px;
             color: var(--ink);
@@ -1854,7 +1858,9 @@
             }
 
             heading.textContent = t.heading;
-            heroKicker.textContent = t.heroKicker;
+            const heroKickerText = t.heroKicker || '';
+            heroKicker.textContent = heroKickerText;
+            heroKicker.hidden = !heroKickerText;
             leadText.textContent = t.lead;
             filterTitle.textContent = t.filterTitle;
             languageLabel.textContent = t.languageLabel;
